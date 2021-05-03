@@ -5,10 +5,17 @@
   "storage": {
     "rules": "storage.rules"
   },
+  "functions": {
+    "runtime": "nodejs12"
+  },
   "hosting": {
     "public": "dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
+      {
+        "source": "/helloWorld",
+        "function": "helloWorld"
+      },
       {
         "source": "**",
         "destination": "/index.html"
