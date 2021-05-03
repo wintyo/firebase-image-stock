@@ -1,0 +1,25 @@
+{
+  // eslintをvueでも適応させる
+  "eslint.validate": ["javascript", "typescript", "vue", "typescriptreact"],
+
+  // stylelintのauto fixを有効にする
+  "stylelint.autoFixOnSave": true,
+
+  // フォーマッターをprettierにして保存時に自動フォーマットする
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  // スペルチェックの設定
+  "cSpell.ignoreRegExpList": ["[０-９Ａ-Ｚａ-ｚぁ-んァ-ヶ亜-熙纊-黑]+"],
+  "cSpell.userWords": ["submenu", "titlebar"],
+
+  // 保存時にauto fixさせる
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+
+  // markdownはprettierを実行させない
+  "[markdown]": {
+    "editor.formatOnSave": false
+  }
+}
