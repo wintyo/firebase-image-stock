@@ -7,6 +7,15 @@ div
       button(@click="onLoginButtonClick") ログイン
     template(v-else)
       p ログイン済
+      button(@click="onGetCookiesButtonClick") get cookies
+      div
+        div
+          label key:
+          input(v-model="cookieForm.key")
+        div
+          label value:
+          input(v-model="cookieForm.value")
+        button(@click="onPostCookiesButtonClick") post cookies
       p
         div {{ state.user.displayName }}
         div {{ state.user.email }}
@@ -23,6 +32,7 @@ import { defineComponent, reactive, onMounted } from 'vue';
 import HelloWorld from './components/HelloWorld.vue';
 
 import firebase, { auth, authProviders, storage } from './firebase/';
+import axios from 'axios';
 
 interface IState {
   isAuthorizing: boolean;
@@ -43,6 +53,11 @@ export default defineComponent({
       isAuthorizing: true,
       user: null,
       imageInfoList: [],
+    });
+
+    const cookieForm = reactive<{ key: string; value: string }>({
+      key: '',
+      value: '',
     });
 
     onMounted(() => {
@@ -78,6 +93,18 @@ export default defineComponent({
 
     return {
       state,
+      cookieForm,
+      onGetCookiesButtonClick: async () => {
+        const res = await axios.get('/api/cookies');
+        console.log(res);
+      },
+      onPostCookiesButtonClick: async () => {
+        const res = await axios.post('/api/cookie', {
+          key: cookieForm.key,
+          value: cookieForm.value,
+        });
+        console.log(res);
+      },
       onLoginButtonClick: () => {
         auth.signInWithRedirect(authProviders.Google);
       },

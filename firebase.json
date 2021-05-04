@@ -6,7 +6,8 @@
     "rules": "storage.rules"
   },
   "functions": {
-    "runtime": "nodejs12"
+    "runtime": "nodejs12",
+    "source": "functions"
   },
   "hosting": {
     "public": "dist",
@@ -17,9 +18,34 @@
         "function": "helloWorld"
       },
       {
+        "source": "/test",
+        "function": "test"
+      },
+      {
+        "source": "/api/**",
+        "function": "api"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
     ]
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "functions": {
+      "port": 5001
+    },
+    "database": {
+      "port": 9000
+    },
+    "hosting": {
+      "port": 5000
+    },
+    "ui": {
+      "enabled": true
+    }
   }
 }
