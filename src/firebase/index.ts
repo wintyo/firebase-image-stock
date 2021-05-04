@@ -14,6 +14,7 @@ export const authProviders = {
 };
 
 export const auth = firebase.auth();
+// auth.useEmulator('http://localhost:9099');
 
 export const database = firebase.database();
 

@@ -87,6 +87,15 @@ export default defineComponent({
                 state.imageInfoList = imageInfoList;
               });
             });
+
+          state.user.getIdToken().then(async (idToken) => {
+            console.log(idToken);
+
+            const res = await axios.post('/api/auth', {
+              idToken,
+            });
+            console.log(res);
+          });
         }
       });
     });
